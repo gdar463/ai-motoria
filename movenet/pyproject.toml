@@ -5,8 +5,8 @@ description = "local implementation of movenet"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-  "imageio",
   "opencv-python",
   "tensorflow",
-  "tensorflow_hub"
+  "tensorflow_hub",
+  "mathplotlib"
 ]
