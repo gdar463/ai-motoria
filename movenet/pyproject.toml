@@ -6,7 +6,17 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
   "opencv-python",
-  "tensorflow",
-  "tensorflow_hub",
-  "mathplotlib"
+  "matplotlib",
+  "kagglehub",
 ]
+
+[tool.ruff.lint]
+ignore = ["F401"]
+
+[tool.basedpyright]
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportAny = false
+reportExplicitAny = false
+reportArgumentType = false
+reportMissingTypeStubs= false
