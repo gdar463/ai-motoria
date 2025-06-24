@@ -17,7 +17,7 @@ import cache
 from model import input_size, movenet
 from image import draw_prediction, ready_image, show_image, write_image
 
-def run_model_and_prediction(path, output_path):
+def run_model_and_prediction(path, output_path=""):
   # Load File
   image = tf.io.read_file(path)
   image = tf.io.decode_jpeg(image)
