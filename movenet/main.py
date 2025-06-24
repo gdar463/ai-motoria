@@ -51,5 +51,6 @@ def run_model_and_prediction(path, output_path=""):
   show_image(output)
 
 if __name__ == "__main__":
-  path = input("Enter file path:")
-  run_model_and_prediction(path)
+  path = input("Enter file path: ")
+  output_path = input("Enter output file path: ")
+  run_model_and_prediction(path, output_path)
