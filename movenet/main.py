@@ -9,7 +9,6 @@ import numpy as np
 try:
   with Timing("TF Load") as t:
     import tensorflow as tf
-    t.force_end()
 except ImportError:
   sys.exit("TensorFlow is not installed. Please install it and try again.\n"
            "Check the TF wiki for information (https://www.tensorflow.org/install/pip)")
