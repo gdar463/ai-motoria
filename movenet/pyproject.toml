@@ -6,7 +6,7 @@ readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
   "opencv-python",
-  "matplotlib",
+  "numpy",
   "kagglehub",
   "pyside6",
   "qtawesome",
