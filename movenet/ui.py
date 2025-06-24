@@ -11,14 +11,10 @@ class MainWindow(QMainWindow):
   def __init__(self):
     super().__init__()
     self.setFixedSize(200,100)
-    self.setWindowFlags(self.windowFlags() & ~Qt.WindowMaximizeButtonHint)
 
     self.setWindowTitle("Movenet")
     widget = MainWidget(self)
     self.setCentralWidget(widget)
-
-  def resizeEvent(self, event):
-    self.resize(200,100)
 
 class MainWidget(QWidget):
   def __init__(self, parent):
