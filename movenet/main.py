@@ -3,7 +3,7 @@ import sys
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"
 
-from debug import Timing
+from debug import Timing, trace
 
 import numpy as np
 try:
@@ -26,11 +26,11 @@ def run_model_and_prediction(path, output_path=""):
   (in_cache, img_cache) = cache.is_in_cache(image)
   if in_cache:
     # If in cache, load cached version
-    print("cache hit")
+    trace("cache hit")
     keypoints = np.load(img_cache)
   else:
     # If not, prepare image
-    print("cache miss")
+    trace("cache miss")
     input_image = tf.expand_dims(image, axis=0)
     input_image = tf.image.resize_with_pad(input_image, input_size, input_size)
 
