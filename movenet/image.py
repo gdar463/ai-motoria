@@ -4,6 +4,7 @@ import platform
 import cv2
 import tensorflow as tf
 import numpy as np
+from PIL import Image
 
 from constants import COLOR_MAP, KEYPOINT_EDGE_INDS_TO_COLOR, keypoints_threshold
 
@@ -61,7 +62,10 @@ def show_image(output):
     # If in WSL, open with wslview
     os.system("wslview output.png")
   else:
-    # If not, let OpenCV handle it
-    cv2.imshow("Pose Detection", output)
-    cv2.waitKey(0)
-    cv2.destroyAllWindows()
+    # Leaving OpenCV implementation if ever needed
+    # # If not, let OpenCV handle it
+    # cv2.imshow("Pose Detection", output)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
+    output = cv2.cvtColor(output, cv2.COLOR_BGR2RGB)
+    Image.asarray(output).show()
