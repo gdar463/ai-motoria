@@ -1,3 +1,4 @@
+import qtawesome as qta
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QDialog, QDialogButtonBox, QFileDialog, QLabel, QVBoxLayout
 
@@ -16,6 +17,7 @@ class Dialog(QDialog):
     super().__init__()
 
     self.setWindowTitle(title)
+    self.setWindowIcon(qta.icon("mdi.dumbbell", color="white"))
 
     button = QDialogButtonBox(QDialogButtonBox.StandardButton.Ok)
     button.accepted.connect(self.accept)  # type: ignore[reportUnknownVariableType]

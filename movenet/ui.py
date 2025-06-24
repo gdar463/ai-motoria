@@ -1,5 +1,7 @@
+import platform
 import sys
 
+import qtawesome as qta
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication, QLineEdit, QMainWindow, QPushButton, QSizePolicy, QVBoxLayout, QWidget, \
   QLabel
@@ -13,6 +15,7 @@ class MainWindow(QMainWindow):
     self.setFixedSize(200,100)
 
     self.setWindowTitle("Movenet")
+    self.setWindowIcon(qta.icon("mdi.dumbbell", color="white"))
     widget = MainWidget(self)
     self.setCentralWidget(widget)
 
@@ -43,6 +46,9 @@ class MainWidget(QWidget):
     open_file_dialog(self, self.output_name.text())
 
 if __name__ == "__main__":
+  if platform.system() == "Windows":
+    myappid = u'gdar463.aimotoria.1.0'
+    ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
   app = QApplication(sys.argv)
   window = MainWindow()
   window.show()
