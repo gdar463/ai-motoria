@@ -2,6 +2,35 @@
 
 Local implementation of [movenet](https://www.tensorflow.org/hub/tutorials/movenet)
 
+## Installation
+
+To install this project, please follow these steps:
+1. Install at least [Python](https://www.python.org/) version 3.8, but not more than 3.12
+2. Clone the repo 
+3. Install the requirements from [pyproject.toml](pyproject.toml)
+   1. Just run `pip install .` in this directory
+4. Install Tensorflow following these [instructions](https://www.tensorflow.org/install/pip) from the TF Wiki
+
+## Usage
+
+If you would like to use a GUI for controlling the app, on Windows run:
+```shell
+py .\ui.py
+```
+and on Linux or MacOS, run:
+```shell
+python3 .\ui.py
+```
+
+If you prefer to just run it from the command line, on Windows run:
+```shell
+py .\main.py
+```
+on Linux or MacOS, run:
+```shell
+python3 .\main.py
+```
+
 ## License
 
 This project is licensed under the [GPL v3.0](../LICENSE) license
