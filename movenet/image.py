@@ -53,10 +53,14 @@ def ready_image(image):
   return cv2.cvtColor(display_np, cv2.COLOR_RGB2BGR)
 
 def show_image(output):
+  # Write image (should move to separate function)
   cv2.imwrite("output.png", output)
-  if not platform.uname().release.endswith("microsoft-standard-WSL2"):
+  # Check if running in WSL
+  if platform.uname().release.endswith("microsoft-standard-WSL2"):
+    # If in WSL, open with wslview
+    os.system("wslview output.png")
+  else:
+    # If not, let OpenCV handle it
     cv2.imshow("Pose Detection", output)
     cv2.waitKey(0)
     cv2.destroyAllWindows()
-  else:
-    os.system("wslview output.png")
