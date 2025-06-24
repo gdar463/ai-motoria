@@ -27,5 +27,5 @@ def is_in_cache(image):
   img_cache = cache_path.joinpath(f"{img_hash}.npy")
   if os.path.exists(img_cache):
     return True, img_cache
-  return False
+  return False, ""
   

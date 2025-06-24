@@ -23,7 +23,7 @@ def run_model_and_prediction(path, output_path=""):
   image = tf.io.decode_jpeg(image)
 
   # Check cache
-  in_cache, img_cache = cache.is_in_cache(image)
+  (in_cache, img_cache) = cache.is_in_cache(image)
   if in_cache:
     # If in cache, load cached version
     print("cache hit")
