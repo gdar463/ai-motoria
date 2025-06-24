@@ -3,17 +3,18 @@ import os
 from enum import Enum
 
 if "DEBUG" in os.environ:
-  debug = os.environ["DEBUG"]
+  debug = int(os.environ["DEBUG"])
 else:
-  debug = False
+  debug = 0
 
 class DebugLevel(Enum):
+  INFO = 0 # should not be used
   DEBUG = 1
   VERBOSE = 2
 
 def trace(message: str, level: DebugLevel = DebugLevel.DEBUG):
-  if debug == level:
-    print(message)
+  if debug >= level.value:
+    print(f"{level.name}: {message}")
 
 class Timing:
   def __init__( self, message ):
