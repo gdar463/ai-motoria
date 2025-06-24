@@ -10,6 +10,7 @@ dependencies = [
   "kagglehub",
   "pyside6",
   "qtawesome",
+  "pillow"
 ]
 
 [tool.ruff.lint]

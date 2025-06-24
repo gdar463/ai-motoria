@@ -46,3 +46,4 @@ This project uses the following third-party libraries:
 - [QtAwesome](https://github.com/spyder-ide/qtawesome), an [MIT](https://github.com/spyder-ide/qtawesome/blob/master/LICENSE.txt) licensed Python library for icon fonts
 - [Material Design](https://github.com/Templarian/MaterialDesign), an [Apache 2.0](https://github.com/Templarian/MaterialDesign/blob/master/LICENSE) licensed Icon collection
 - [Numpy](https://github.com/numpy/numpy), an [BSD](https://github.com/numpy/numpy/blob/main/LICENSE.txt) licensed Computing library
+- [Pillow (PIL)](https://github.com/python-pillow/Pillow), an [MIT-CMU](https://github.com/python-pillow/Pillow/blob/main/LICENSE) licensed Imaging library
