@@ -12,5 +12,5 @@ class Timing:
 
   def __exit__( self, exc_type, exc_value, traceback ):
     self.end = time.time()
-    if os.environ["DEBUG"]:
+    if "DEBUG" in os.environ:
       print(f"{self.message}: {self.end - self.start}")
