@@ -7,7 +7,8 @@ class Timing:
     self.message = message
 
   def __enter__( self ):
-    print(f"started timing {self.message}")
+    if "DEBUG" in os.environ:
+      print(f"started timing {self.message}")
     self.start = time.time()
     return self
 
