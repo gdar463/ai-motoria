@@ -3,9 +3,12 @@ import sys
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"
 
+from timing import Timing
+
 import numpy as np
 try:
-  import tensorflow as tf
+  with Timing("TF Load"):
+    import tensorflow as tf
 except ImportError:
   sys.exit("TensorFlow is not installed. Please install it and try again.\n"
            "Check the TF wiki for information (https://www.tensorflow.org/install/pip)")
