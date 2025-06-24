@@ -15,3 +15,6 @@ class Timing:
     self.end = time.time()
     if "DEBUG" in os.environ:
       print(f"{self.message} timing: {self.end - self.start}")
+
+  def force_end( self ):
+    self.__exit__( None, None, None )
