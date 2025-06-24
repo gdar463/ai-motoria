@@ -3,7 +3,7 @@ from typing import Any
 import kagglehub
 import tensorflow as tf
 
-from timing import Timing
+from debug import Timing
 
 input_size = 192
 

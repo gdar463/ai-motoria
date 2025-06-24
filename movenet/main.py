@@ -3,7 +3,7 @@ import sys
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"
 
-from timing import Timing
+from debug import Timing
 
 import numpy as np
 try:
