@@ -52,9 +52,10 @@ def ready_image(image):
   display_np = np.squeeze(display.numpy(), axis=0).astype(np.uint8)
   return cv2.cvtColor(display_np, cv2.COLOR_RGB2BGR)
 
+def write_image(output, output_path):
+  cv2.imwrite(output_path, output)
+
 def show_image(output):
-  # Write image (should move to separate function)
-  cv2.imwrite("output.png", output)
   # Check if running in WSL
   if platform.uname().release.endswith("microsoft-standard-WSL2"):
     # If in WSL, open with wslview

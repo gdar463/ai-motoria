@@ -7,9 +7,9 @@ import tensorflow as tf
 
 import cache
 from model import input_size, movenet
-from image import draw_prediction, ready_image, show_image
+from image import draw_prediction, ready_image, show_image, write_image
 
-def run_model_and_prediction(path):
+def run_model_and_prediction(path, output_path):
   # Load File
   image = tf.io.read_file(path)
   image = tf.io.decode_jpeg(image)
@@ -36,5 +36,12 @@ def run_model_and_prediction(path):
   # Overlay keypoints with image
   output = draw_prediction(display, keypoints)
 
+  # Save image
+  if output_path != "":
+    write_image(output, output_path)
   # Open image
   show_image(output)
+
+if __name__ == "__main__":
+  path = input("Enter file path:")
+  run_model_and_prediction(path)

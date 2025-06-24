@@ -1,15 +1,15 @@
-from PyQt6.QtCore import Qt
-from PyQt6.QtWidgets import QDialog, QDialogButtonBox, QFileDialog, QLabel, QVBoxLayout
+from PySide6.QtCore import Qt
+from PySide6.QtWidgets import QDialog, QDialogButtonBox, QFileDialog, QLabel, QVBoxLayout
 
 from main import run_model_and_prediction
 
 
-def open_file_dialog( parent ):
-  filename = QFileDialog.getOpenFileName(parent, "Apri file", "", "All Files (*)", )
+def open_file_dialog( parent, output_path ):
+  filename = QFileDialog.getOpenFileName(parent, "Open File", "", "Images (*.jpg *.jpeg)", )
   if filename[0] != "":
-    run_model_and_prediction(filename[0])
+    run_model_and_prediction(filename[0], output_path)
   else:
-    _ = Dialog("Messaggio", "<p style=\"font-size:13px\">Non hai selezionato alcun file</p>").exec()
+    Dialog("Error", "<p style=\"font-size:13px\">No file selected</p>").exec()
 
 class Dialog(QDialog):
   def __init__( self, title: str, message: str ):
