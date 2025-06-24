@@ -8,6 +8,7 @@ dependencies = [
   "opencv-python",
   "matplotlib",
   "kagglehub",
+  "pyqt6==6.9.1",
 ]
 
 [tool.ruff.lint]
