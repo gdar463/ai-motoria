@@ -1,4 +1,5 @@
 import time
+import os
 
 
 class Timing:
@@ -11,4 +12,5 @@ class Timing:
 
   def __exit__( self, exc_type, exc_value, traceback ):
     self.end = time.time()
-    print(f"{self.message}: {self.end - self.start}")
+    if os.environ["DEBUG"]:
+      print(f"{self.message}: {self.end - self.start}")
