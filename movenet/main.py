@@ -3,7 +3,7 @@ import sys
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"
 
-from debug import Timing, trace
+from debug import DebugLevel, Timing, trace
 
 import numpy as np
 try:
@@ -52,5 +52,7 @@ def run_model_and_prediction(path, output_path=""):
 
 if __name__ == "__main__":
   path = input("Enter file path: ")
+  trace(path, DebugLevel.VERBOSE)
   output_path = input("Enter output file path: ")
+  trace(output_path, DebugLevel.VERBOSE)
   run_model_and_prediction(path, output_path)

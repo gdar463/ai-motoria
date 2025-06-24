@@ -1,11 +1,18 @@
 import time
 import os
+from enum import Enum
 
 if "DEBUG" in os.environ:
-  debug = os.environ
+  debug = os.environ["DEBUG"]
+else:
+  debug = False
 
-def trace(message: str):
-  if debug:
+class DebugLevel(Enum):
+  DEBUG = 1
+  VERBOSE = 2
+
+def trace(message: str, level: DebugLevel = DebugLevel.DEBUG):
+  if debug == level:
     print(message)
 
 class Timing:
