@@ -1,9 +1,14 @@
 import os
+import sys
 
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"
 
 import numpy as np
-import tensorflow as tf
+try:
+  import tensorflow as tf
+except ImportError:
+  sys.exit("TensorFlow is not installed. Please install it and try again.\n"
+           "Check the TF wiki for information (https://www.tensorflow.org/install/pip)")
 
 import cache
 from model import input_size, movenet
