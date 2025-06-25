@@ -34,9 +34,10 @@ This project uses the following third-party libraries:
 - [OpenCV](https://github.com/opencv/opencv), an [Apache 2.0](https://github.com/opencv/opencv/blob/master/LICENSE) licensed Computer Vision library
 - [Numpy](https://github.com/numpy/numpy), an [BSD](https://github.com/numpy/numpy/blob/main/LICENSE.txt) licensed Computing library
 
-[//]: # ( 
+<!--
 These might be use in the future, but currently no
 - [PySide6]&#40;https://doc.qt.io/qtforpython/&#41;, [LGPL-3.0]&#40;https://www.gnu.org/licenses/lgpl-3.0.en.html&#41; or [GPL-3.0]&#40;../LICENSE&#41; licensed Python bindings for the [Qt]&#40;https://www.qt.io/&#41; framework
 - [QtAwesome]&#40;https://github.com/spyder-ide/qtawesome&#41;, an [MIT]&#40;https://github.com/spyder-ide/qtawesome/blob/master/LICENSE.txt&#41; licensed Python library for icon fonts
 - [Material Design]&#40;https://github.com/Templarian/MaterialDesign&#41;, an [Apache 2.0]&#40;https://github.com/Templarian/MaterialDesign/blob/master/LICENSE&#41; licensed Icon collection
-- [Pillow &#40;PIL&#41;]&#40;https://github.com/python-pillow/Pillow&#41;, an [MIT-CMU]&#40;https://github.com/python-pillow/Pillow/blob/main/LICENSE&#41; licensed Imaging library)
+- [Pillow &#40;PIL&#41;]&#40;https://github.com/python-pillow/Pillow&#41;, an [MIT-CMU]&#40;https://github.com/python-pillow/Pillow/blob/main/LICENSE&#41; licensed Imaging library
+-->
