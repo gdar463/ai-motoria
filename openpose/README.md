@@ -14,9 +14,8 @@ To install this project, please follow these steps:
    2. If you want to use an AMD or Intel GPU or you don't have a GPU, you'll need to [build from source](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/doc/installation/0_index.md) with the appropriate flags
       1. OpenPose's [license](../LICENSE.OpenPose) doesn't allow distribution of pre-built binaries, apart from CMU's provided ones
 5. Install the models through the [getModels.bat](models/getModels.bat) (or on Linux/MacOS [getModels.sh](models/getModels.sh))
-   1. These scripts are **NOT** licensed under GPL v3.0 (as the rest of project)
+   1. These scripts are licensed under the OpenPose [LICENSE](../LICENSE.OpenPose), which **DIFFERS** from GPL v3.0 (under which the rest of this project is licensed)
    2. These script come from the OpenPose [repo](https://github.com/CMU-Perceptual-Computing-Lab/openpose) at the following links: [Windows](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/models/getModels.bat) or [Linux/MacOS](https://github.com/CMU-Perceptual-Computing-Lab/openpose/blob/master/models/getModels.sh) versions
-   3. As such they are licensed under the OpenPose [LICENSE](../LICENSE.OpenPose)
 
 ## Usage
 
