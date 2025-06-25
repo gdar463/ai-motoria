@@ -1,0 +1,21 @@
+[project]
+name = "openpose"
+version = "0.1.0"
+description = "implementation of openpose"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+  "opencv-python",
+  "numpy",
+]
+
+[tool.ruff.lint]
+ignore = ["F401"]
+
+[tool.basedpyright]
+reportUnknownVariableType = false
+reportUnknownMemberType = false
+reportAny = false
+reportExplicitAny = false
+reportArgumentType = false
+reportMissingTypeStubs= false

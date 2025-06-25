@@ -16,3 +16,6 @@ cache/
 *.jpeg
 *.jpg
 /pyproject.toml
+
+openpose.so
+models/
