@@ -15,6 +15,5 @@ cache/
 *.png
 *.jpeg
 *.jpg
-/pyproject.toml
 
 pyopenpose.so

@@ -1,9 +1,20 @@
 [project]
-name = "movenet"
+name = "ai-motoia"
 version = "0.1.0"
-description = "local implementation of movenet"
+description = "implementation of movenet and openpose"
 readme = "README.md"
 requires-python = ">=3.8"
+dependencies = [
+  "opencv-python==4.12.0.88",
+  "numpy==2.2.6",
+  "pillow==11.3.0",
+  "qtawesome>=1.4.0",
+  "pyside6==6.9.2",
+  "kagglehub==0.3.13",
+]
+
+[tool.uv.workspace]
+members = ["movenet", "openpose"]
 
 [tool.ruff.lint]
 ignore = ["F401"]
