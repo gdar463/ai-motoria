@@ -5,13 +5,16 @@ os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"
 
 from debug import DebugLevel, Timing, trace
 
+import importlib.util
+
 import numpy as np
-try:
-  with Timing("TF Load") as t:
-    import tensorflow as tf
-except ImportError:
+if importlib.util.find_spec("tensorflow") is None:
   sys.exit("TensorFlow is not installed. Please install it and try again.\n"
-           "Check the TF wiki for information (https://www.tensorflow.org/install/pip)")
+         "Check the TF wiki for information (https://www.tensorflow.org/install/pip)")
+
+with Timing("TF Load") as t:
+  # noinspection PyUnresolvedReferences
+  import tensorflow as tf
 
 import cache
 from model import input_size, movenet
