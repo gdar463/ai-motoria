@@ -1,3 +1,4 @@
+import ctypes
 import platform
 import sys
 
@@ -48,6 +49,7 @@ class MainWidget(QWidget):
 if __name__ == "__main__":
   if platform.system() == "Windows":
     myappid = u'gdar463.aimotoria.1.0'
+    # noinspection PyUnresolvedReferences
     ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
   app = QApplication(sys.argv)
   window = MainWindow()
