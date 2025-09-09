@@ -4,6 +4,8 @@ import os
 import cv2
 import pyopenpose as op
 
+from image import show_image
+
 parser = argparse.ArgumentParser()
 parser.add_argument("image")
 parser.add_argument('--models-folder', '-m', default="./models", help='path to models folder')
@@ -30,4 +32,4 @@ vectorDatum.append(datum)
 opWrapper.emplaceAndPop(vectorDatum)
 
 cv2.imwrite(args.output, datum.cvOutputData)
-lib.show_image(datum.cvOutputData)
+show_image(datum.cvOutputData)
