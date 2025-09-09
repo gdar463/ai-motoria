@@ -15,7 +15,7 @@ if importlib.util.find_spec("tensorflow") is None:
 
 with Timing("TF Load") as t:
   # noinspection PyUnresolvedReferences
-  import tensorflow as tf
+  from tensorflow import io as tf_io, expand_dims as tf_expand_dims, image as tf_image
 
 import cache
 from model import input_size, movenet
@@ -23,8 +23,8 @@ from image import draw_prediction, ready_image, show_image, write_image
 
 def run_model_and_prediction(path, output_path=""):
   # Load File
-  image = tf.io.read_file(path)
-  image = tf.io.decode_jpeg(image)
+  image = tf_io.read_file(path)
+  image = tf_io.decode_jpeg(image)
 
   # Check cache
   (in_cache, img_cache) = cache.is_in_cache(image)
@@ -35,8 +35,8 @@ def run_model_and_prediction(path, output_path=""):
   else:
     # If not, prepare image
     trace("cache miss")
-    input_image = tf.expand_dims(image, axis=0)
-    input_image = tf.image.resize_with_pad(input_image, input_size, input_size)
+    input_image = tf_expand_dims(image, axis=0)
+    input_image = tf_image.resize_with_pad(input_image, input_size, input_size)
 
     # Run prediction
     keypoints = movenet(input_image)

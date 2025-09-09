@@ -2,11 +2,11 @@ import hashlib
 import os
 from pathlib import Path
 
-from tensorflow import cast, uint8, io
+from tensorflow import cast as tf_cast, uint8 as tf_uint8, io as tf_io
 
 
 def get_image_hash( image_tensor ):
-  img_bytes = io.encode_jpeg(cast(image_tensor, uint8)).numpy()
+  img_bytes = tf_io.encode_jpeg(tf_cast(image_tensor, tf_uint8)).numpy()
   return hashlib.md5(img_bytes).hexdigest()
 
 

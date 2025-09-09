@@ -2,7 +2,7 @@ import os
 import platform
 
 import cv2
-import tensorflow as tf
+from tensorflow import expand_dims as tf_expand_dims, cast as tf_cast, image as tf_image, int32 as tf_int32
 import numpy as np
 from PIL import Image
 
@@ -48,8 +48,8 @@ def draw_prediction(image, keypoints, crop_region=None, output_image_height=None
   return image
 
 def ready_image(image):
-  display = tf.expand_dims(image, axis=0)
-  display = tf.cast(tf.image.resize_with_pad(display, 1280, 1280), dtype=tf.int32)
+  display = tf_expand_dims(image, axis=0)
+  display = tf_cast(tf_image.resize_with_pad(display, 1280, 1280), dtype=tf_int32)
   display_np = np.squeeze(display.numpy(), axis=0).astype(np.uint8)
   return cv2.cvtColor(display_np, cv2.COLOR_RGB2BGR)
 
