@@ -68,4 +68,4 @@ def show_image(output):
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
     output = cv2.cvtColor(output, cv2.COLOR_BGR2RGB)
-    Image.asarray(output).show()
+    Image.fromarray(output).show()

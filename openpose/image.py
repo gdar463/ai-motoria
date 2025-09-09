@@ -15,4 +15,4 @@ def show_image(output):
     # cv2.imshow("Pose Detection", output)
     # cv2.waitKey(0)
     # cv2.destroyAllWindows()
-    Image.asarray(output).show()
+    Image.fromarray(output).show()
