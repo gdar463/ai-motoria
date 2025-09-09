@@ -1,3 +1,4 @@
+import argparse
 import os
 import sys
 
@@ -54,8 +55,18 @@ def run_model_and_prediction(path, output_path=""):
   show_image(output)
 
 if __name__ == "__main__":
-  path = input("Enter file path: ")
+  parser = argparse.ArgumentParser()
+  parser.add_argument("image")
+  parser.add_argument("--output", "-o", required=False)
+  args = parser.parse_args()
+  if args.image:
+    path = args.image
+  else:
+    path = input("Enter file path: ")
   trace(path, DebugLevel.VERBOSE)
-  output_path = input("Enter output file path: ")
+  if args.output:
+    output_path = args.output
+  else:
+    output_path = input("Enter output file path: ")
   trace(output_path, DebugLevel.VERBOSE)
   run_model_and_prediction(path, output_path)
