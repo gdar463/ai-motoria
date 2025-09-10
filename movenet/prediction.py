@@ -1,5 +1,9 @@
+import os
+
 from debug import MessageLevel, Timing, logger
 from spinner import Spinner
+
+os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"
 
 with Timing("TF Load: prediction.py") as t:
     logger.trace("Loading TensorFlow (might take a while) ...", MessageLevel.VERBOSE)

@@ -1,13 +1,10 @@
 import argparse
 import importlib.util
-import os
 import sys
 
 import filetype
 
-os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"
-
-from debug import MessageLevel, LoggerClass, logger
+from debug import LoggerClass, MessageLevel, logger
 
 if importlib.util.find_spec("tensorflow") is None:
     logger.trace("TensorFlow is not installed. Please install it and try again.\n"
