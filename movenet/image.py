@@ -7,11 +7,11 @@ import numpy as np
 from PIL import Image
 
 from constants import COLOR_MAP, KEYPOINT_EDGE_INDS_TO_COLOR, keypoints_threshold
-from debug import trace, DebugLevel
+from debug import MessageLevel, logger
 
 
 # noinspection PyUnresolvedReferences,PyUnboundLocalVariable
-def draw_prediction(image, keypoints, crop_region=None, output_image_height=None):
+def draw_prediction( image, keypoints, crop_region = None, output_image_height = None , video = False):
   height, width = image.shape[:2]
 
   # Draw model output
@@ -26,13 +26,20 @@ def draw_prediction(image, keypoints, crop_region=None, output_image_height=None
       if kpts_scores[p1] > keypoints_threshold and kpts_scores[p2] > keypoints_threshold:
         pt1 = (int(kpts_x[p1]), int(kpts_y[p1]))
         pt2 = (int(kpts_x[p2]), int(kpts_y[p2]))
-        cv2.line(image, pt1, pt2, COLOR_MAP[color_key], 3)
+        if video:
+          cv2.line(image, pt1, pt2, COLOR_MAP[color_key], 2)
+        else:
+          cv2.line(image, pt1, pt2, COLOR_MAP[color_key], 3)
 
     # Draw keypoints (joints)
     for x, y, score in zip(kpts_x, kpts_y, kpts_scores):
       if score > keypoints_threshold:
-        cv2.circle(image, (int(x), int(y)), 6, COLOR_MAP['red'], -1)
+        if video:
+          cv2.circle(image, (int(x), int(y)), 3, COLOR_MAP['red'], -1)
+        else:
+          cv2.circle(image, (int(x), int(y)), 6, COLOR_MAP['red'], -1)
 
+<<<<<<< Updated upstream
   # # Crop (if asked, for video)
   # if crop_region is not None:
   #   xmin = int(max(crop_region['x_min'] * width, 0.0))
@@ -40,25 +47,45 @@ def draw_prediction(image, keypoints, crop_region=None, output_image_height=None
   #   xmax = int(min(crop_region['x_max'], 0.99) * width)
   #   ymax = int(min(crop_region['y_max'], 0.99) * height)
   #   cv2.rectangle(image, (xmin, ymin), (xmax, ymax), COLOR_MAP['b'], 1)
+||||||| Stash base
+  # Crop (if asked, for video)
+  if crop_region is not None:
+    xmin = int(max(crop_region['x_min'] * width, 0.0))
+    ymin = int(max(crop_region['y_min'] * height, 0.0))
+    xmax = int(min(crop_region['x_max'], 0.99) * width)
+    ymax = int(min(crop_region['y_max'], 0.99) * height)
+    cv2.rectangle(image, (xmin, ymin), (xmax, ymax), COLOR_MAP['b'], 1)
+=======
+  # # Crop (if asked, for video debug)
+  # if crop_region is not None:
+  #   xmin = int(max(crop_region['x_min'] * width, 0.0))
+  #   ymin = int(max(crop_region['y_min'] * height, 0.0))
+  #   xmax = int(min(crop_region['x_max'], 0.99) * width)
+  #   ymax = int(min(crop_region['y_max'], 0.99) * height)
+  #   cv2.rectangle(image, (xmin, ymin), (xmax, ymax), COLOR_MAP['b'], 1)
+>>>>>>> Stashed changes
 
   # Resize (if asked)
   if output_image_height is not None:
-    output_image_width = int(output_image_height * height / width)
-    trace("Resizing output image to %dx%d" % (output_image_width, output_image_height), DebugLevel.VERBOSE)
+    output_image_width = int(output_image_height * width / height)
+    logger.trace("Resizing output image to %dx%d" % (output_image_width, output_image_height), MessageLevel.VERY_VERBOSE)
     image = cv2.resize(image, (output_image_width, output_image_height), interpolation=cv2.INTER_CUBIC)
 
   return image
 
-def ready_image(image):
+
+def ready_image( image ):
   display = tf_expand_dims(image, axis=0)
   display = tf_cast(tf_image.resize_with_pad(display, 1280, 1280), dtype=tf_int32)
   display_np = np.squeeze(display.numpy(), axis=0).astype(np.uint8)
   return cv2.cvtColor(display_np, cv2.COLOR_RGB2BGR)
 
-def write_image(output, output_path):
+
+def write_image( output, output_path ):
   cv2.imwrite(output_path, output)
 
-def show_image(output):
+
+def show_image( output ):
   # Check if running in WSL
   if platform.uname().release.endswith("microsoft-standard-WSL2"):
     # If in WSL, open with wslview

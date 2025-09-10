@@ -28,4 +28,12 @@ def is_in_cache(image):
   if os.path.exists(img_cache):
     return True, img_cache
   return False, img_cache
-  
+
+
+def get_model():
+  cache_path = get_cache_path()
+  model_path = cache_path.joinpath("movenet")
+
+  if not os.path.exists(model_path):
+      return False, model_path
+  return True, model_path

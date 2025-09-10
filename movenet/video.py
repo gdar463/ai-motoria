@@ -1,10 +1,10 @@
 import os
+import platform
 
 import numpy as np
-from tensorflow import expand_dims as tf_expand_dims, image as tf_image
+from tensorflow import expand_dims as tf_expand_dims, image as tf_image, cast as tf_cast, int32 as tf_int32
 
 from constants import KEYPOINT_DICT, TORSO_JOINTS, min_crop_keypoint_threshold
-from model import movenet
 
 import cv2
 
@@ -35,11 +35,11 @@ def crop_and_resize( image, crop_region, crop_size ):
   return tf_image.crop_and_resize(image, box_indices=[0], boxes=boxes, crop_size=crop_size)
 
 
-def run_inference( image, crop_region, crop_size ):
+def run_inference( movenet, image, crop_region, crop_size ):
   height, width, _ = image.shape
   input_image = crop_and_resize(tf_expand_dims(image, axis=0), crop_region, crop_size)
-
-  keypoints = movenet(input_image)
+  input_image = tf_cast(input_image, tf_int32)
+  keypoints = movenet(input=input_image)["output_0"].numpy()
   # 17 are the number of keypoints
   for i in range(17):
     keypoints[0, 0, i, 0] = (
@@ -88,7 +88,7 @@ def determine_crop_region( keypoints, height, width ):
     max_y_body = 0
     max_x_body = 0
     for joint in KEYPOINT_DICT.keys():
-      if keypoints[0,0, KEYPOINT_DICT[joint], 2] < min_crop_keypoint_threshold:
+      if keypoints[0, 0, KEYPOINT_DICT[joint], 2] < min_crop_keypoint_threshold:
         continue
       dist_y = abs(center_y - target[joint][0])
       dist_x = abs(center_x - target[joint][1])
@@ -108,18 +108,19 @@ def determine_crop_region( keypoints, height, width ):
       return {
         "y_min": crop_corner[0] / height,
         "x_min": crop_corner[1] / width,
-        "y_max": (crop_corner[0] + crop_length_half* 2) / height,
-        "x_max": (crop_corner[1] + crop_length_half) / width,
+        "y_max": (crop_corner[0] + crop_length_half * 2) / height,
+        "x_max": (crop_corner[1] + crop_length_half * 2) / width,
         "height": crop_length_half * 2 / height,
         "width": crop_length_half * 2 / width,
       }
   else:
     return init_crop_region(height, width)
 
-def save_video(video, path, fps=30):
+
+def save_video( video, path, fps = 5 ):
   n_frames, height, width, channels = video.shape
 
-  if channels== 3:
+  if channels == 3:
     colors = video[..., ::-1]
   else:
     colors = video
@@ -132,4 +133,12 @@ def save_video(video, path, fps=30):
     output.write(frame)
 
   output.release()
-  os.system("wslview " + path)
+
+def show_video(path):
+  # Check if running in WSL
+  if platform.uname().release.endswith("microsoft-standard-WSL2"):
+    # If in WSL, open with wslview
+    os.system(f"wslview {path}")
+  else:
+    os.startfile(path)
+
