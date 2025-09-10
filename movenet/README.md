@@ -8,7 +8,7 @@ To install this project, please follow these steps:
 1. Install at least [Python](https://www.python.org/) version 3.8, but not more than 3.12
 2. Clone the repo 
 3. Install the requirements from [pyproject.toml](pyproject.toml)
-   1. Just run `pip install .` in this directory
+   1. Just run `pip install .` in the repo's root
 4. Install Tensorflow following these [instructions](https://www.tensorflow.org/install/pip) from the TF Wiki
 
 ## Usage
@@ -47,3 +47,5 @@ This project uses the following third-party libraries:
 - [Material Design](https://github.com/Templarian/MaterialDesign), an [Apache 2.0](https://github.com/Templarian/MaterialDesign/blob/master/LICENSE) licensed Icon collection
 - [Numpy](https://github.com/numpy/numpy), an [BSD](https://github.com/numpy/numpy/blob/main/LICENSE.txt) licensed Computing library
 - [Pillow (PIL)](https://github.com/python-pillow/Pillow), an [MIT-CMU](https://github.com/python-pillow/Pillow/blob/main/LICENSE) licensed Imaging library
+- [Colorama](https://github.com/tartley/colorama), an [BSD-3-Clause](https://github.com/tartley/colorama/blob/master/LICENSE.txt) licensed colored terminal library
+- [Filetype](https://github.com/h2non/filetype.py), an [MIT](https://github.com/h2non/filetype.py/blob/master/LICENSE) licensed file type detection library
