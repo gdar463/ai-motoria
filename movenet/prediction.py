@@ -27,30 +27,32 @@ def run_photo( path, output_path ):
     (in_cache, img_cache) = cache.is_in_cache(image)
     if in_cache:
         # If in cache, load cached version
-        logger.trace("cache hit")
+        logger.trace("cache hit", MessageLevel.VERY_VERBOSE)
         keypoints = np.load(img_cache)
     else:
         # If not, prepare image
-        logger.trace("cache miss")
+        logger.trace("cache miss", MessageLevel.VERY_VERBOSE)
         input_image = tf_expand_dims(image, axis=0)
         input_image = tf_image.resize_with_pad(input_image, input_size, input_size)
 
         # Run prediction
-        keypoints = movenet(input_image)
+        logger.trace("Running inference on image ...", MessageLevel.VERBOSE)
+        with Spinner():
+            keypoints = movenet(input_image)
+        logger.trace("Inference complete", MessageLevel.VERBOSE)
         # Save in cache
         np.save(img_cache, keypoints)
 
     # Prepare display for output
     display = ready_image(image)
     # Overlay keypoints with image
-    logger.trace("Drawing keypoints on topo of image ...", MessageLevel.VERBOSE)
+    logger.trace("Drawing keypoints on top of image ...", MessageLevel.VERBOSE)
     with Spinner():
         output = draw_prediction(display, keypoints)
     logger.trace("Keypoints drawn", MessageLevel.VERBOSE)
 
     write_image(output, output_path)
-    # Open image
-    show_image(output)
+    return output
 
 
 def run_video( path, output_path, fps = 5 ):
@@ -76,4 +78,4 @@ def run_video( path, output_path, fps = 5 ):
 
     output = np.stack(output, axis=0)
     save_video(output, output_path, fps)
-    show_video(output_path)
+    return output_path

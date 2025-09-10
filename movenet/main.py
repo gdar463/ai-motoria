@@ -5,6 +5,8 @@ import sys
 import filetype
 
 from debug import LoggerClass, MessageLevel, logger
+from image import show_image
+from video import show_video
 
 if importlib.util.find_spec("tensorflow") is None:
     logger.trace("TensorFlow is not installed. Please install it and try again.\n"
@@ -30,8 +32,9 @@ if __name__ == "__main__":
             sys.exit(1)
         from prediction import run_video
 
-        run_video(args.image, args.output, args.fps)
+        output = run_video(args.image, args.output, args.fps)
         logger.trace("Video saved to " + args.output, MessageLevel.INFO)
+        show_video(output)
     else:
         logger.trace(f'Processing image file "{args.image}"', MessageLevel.INFO)
         mime = filetype.guess_mime(args.image)
@@ -41,5 +44,6 @@ if __name__ == "__main__":
             sys.exit(1)
         from prediction import run_photo
 
-        run_photo(args.image, args.output)
+        output = run_photo(args.image, args.output)
         logger.trace("Image saved to " + args.output, MessageLevel.INFO)
+        show_image(output)
