@@ -14,4 +14,4 @@ reportUnknownMemberType = false
 reportAny = false
 reportExplicitAny = false
 reportArgumentType = false
-reportMissingTypeStubs= false
+reportMissingTypeStubs = false

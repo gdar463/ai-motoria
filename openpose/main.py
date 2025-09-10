@@ -2,6 +2,7 @@ import argparse
 import os
 
 import cv2
+# noinspection PyUnresolvedReferences
 import pyopenpose as op
 
 from image import show_image
@@ -24,7 +25,7 @@ opWrapper.start()
 datum = op.Datum()
 image = cv2.imread(os.path.abspath(args.image))
 if image is None:
-  raise ValueError(f"Image not found: {args.image}")
+    raise ValueError(f"Image not found: {args.image}")
 datum.cvInputData = image
 
 vectorDatum = op.VectorDatum()

@@ -5,14 +5,14 @@ description = "implementation of movenet and openpose"
 readme = "README.md"
 requires-python = ">=3.8"
 dependencies = [
-  "opencv-python==4.12.0.88",
-  "numpy==2.2.6",
-  "pillow==11.3.0",
-  "qtawesome>=1.4.0",
-  "pyside6==6.9.2",
-  "kagglehub==0.3.13",
-  "filetype==1.2.0",
-  "colorama>=0.4.6",
+    "opencv-python==4.12.0.88",
+    "numpy==2.2.6",
+    "pillow==11.3.0",
+    "qtawesome>=1.4.0",
+    "pyside6==6.9.2",
+    "kagglehub==0.3.13",
+    "filetype==1.2.0",
+    "colorama>=0.4.6",
 ]
 
 [project.optional-dependencies]
@@ -32,4 +32,4 @@ reportUnknownMemberType = false
 reportAny = false
 reportExplicitAny = false
 reportArgumentType = false
-reportMissingTypeStubs= false
+reportMissingTypeStubs = false

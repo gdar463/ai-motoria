@@ -1,7 +1,7 @@
-import os
 import argparse
-import sys
 import importlib.util
+import os
+import sys
 
 import filetype
 
@@ -11,9 +11,8 @@ from debug import MessageLevel, LoggerClass, logger
 
 if importlib.util.find_spec("tensorflow") is None:
     logger.trace("TensorFlow is not installed. Please install it and try again.\n"
-          "Check the TF wiki for information (https://www.tensorflow.org/install/pip)", MessageLevel.ERROR)
+                 "Check the TF wiki for information (https://www.tensorflow.org/install/pip)", MessageLevel.ERROR)
     sys.exit(1)
-
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
@@ -33,14 +32,17 @@ if __name__ == "__main__":
             logger.trace("Only GIF format supported. Please convert file and try again.", MessageLevel.ERROR)
             sys.exit(1)
         from prediction import run_video
+
         run_video(args.image, args.output, args.fps)
         logger.trace("Video saved to " + args.output, MessageLevel.INFO)
     else:
         logger.trace(f'Processing image file "{args.image}"', MessageLevel.INFO)
         mime = filetype.guess_mime(args.image)
         if mime is None or (mime != "image/jpeg" and mime != "image/png" and mime != "image/bmp"):
-            logger.trace("Only JPEG or PNG or BMP formats supported. Please convert file and try again.", MessageLevel.ERROR)
+            logger.trace("Only JPEG or PNG or BMP formats supported. Please convert file and try again.",
+                         MessageLevel.ERROR)
             sys.exit(1)
         from prediction import run_photo
+
         run_photo(args.image, args.output)
         logger.trace("Image saved to " + args.output, MessageLevel.INFO)

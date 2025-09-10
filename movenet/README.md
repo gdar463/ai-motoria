@@ -17,7 +17,7 @@ If you would like to use a GUI for controlling the app, on Windows run:
 ```shell
 py .\ui.py
 ```
-and on Linux or MacOS, run:
+and on Linux or macOS, run:
 ```shell
 python3 .\ui.py
 ```
@@ -26,7 +26,7 @@ If you prefer to just run it from the command line, on Windows run:
 ```shell
 py .\main.py
 ```
-on Linux or MacOS, run:
+on Linux or macOS, run:
 ```shell
 python3 .\main.py
 ```

@@ -27,10 +27,10 @@ TORSO_JOINTS = ['left_shoulder', 'right_shoulder', 'left_hip', 'right_hip']
 
 # BGR map for OpenCV
 COLOR_MAP = {
-    'm': (255, 0, 255),   # magenta
-    'c': (255, 255, 0),   # cyan
-    'y': (0, 255, 255),   # yellow
-    'b': (255, 0, 0),     # blue
+    'm': (255, 0, 255),  # magenta
+    'c': (255, 255, 0),  # cyan
+    'y': (0, 255, 255),  # yellow
+    'b': (255, 0, 0),  # blue
     'red': (147, 20, 255)
 }
 
