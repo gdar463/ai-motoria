@@ -9,7 +9,7 @@ from PySide6.QtWidgets import QApplication, QButtonGroup, QLabel, QLineEdit, QMa
     QVBoxLayout, \
     QWidget
 
-from dialog import Dialog, open_file_dialog_photo, open_file_dialog_video
+from dialog import Dialog, open_file_dialog_photo, open_file_dialog_video, LoadingDialog
 
 
 class MainWindow(QMainWindow):
@@ -26,6 +26,7 @@ class MainWindow(QMainWindow):
 class MainWidget(QWidget):
     def __init__( self, parent ):
         super().__init__()
+        self.loading_dialog = LoadingDialog()
         self.setFixedSize(300, 170)
         self.setSizePolicy(QSizePolicy.Policy.Fixed, QSizePolicy.Policy.Fixed)
 
@@ -74,11 +75,13 @@ class MainWidget(QWidget):
     def run_prediction( self ):
         if self.radio_group.checkedButton().text() == "Image":
             open_file_dialog_photo(self, self.output_name.text())
+            self.loading_dialog.close()
         else:
             if not self.output_name.text().endswith(".mp4"):
                 Dialog("Error", "<p style=\"font-size:13px\">Output file name not valid. Only mp4 files allowed</p>").exec()
             else:
                 open_file_dialog_video(self, self.output_name.text())
+                self.loading_dialog.close()
 
     def text_changed( self ):
         if self.output_name.text() != "":
