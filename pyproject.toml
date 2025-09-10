@@ -13,6 +13,11 @@ dependencies = [
   "kagglehub==0.3.13",
 ]
 
+[project.optional-dependencies]
+cpu = [
+    "tensorflow-cpu>=2.20.0",
+]
+
 [tool.uv.workspace]
 members = ["movenet", "openpose"]
 
