@@ -15,5 +15,7 @@ cache/
 *.png
 *.jpeg
 *.jpg
+*.gif
+*.mp4
 
 pyopenpose.so
