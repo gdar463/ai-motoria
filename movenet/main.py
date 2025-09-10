@@ -2,6 +2,8 @@ import argparse
 import os
 import sys
 
+from video import determine_crop_region, init_crop_region, run_inference, save_video
+
 os.environ["TF_CPP_MIN_LOG_LEVEL"] = "1"
 
 from debug import DebugLevel, Timing, trace
@@ -21,7 +23,7 @@ import cache
 from model import input_size, movenet
 from image import draw_prediction, ready_image, show_image, write_image
 
-def run_model_and_prediction(path, output_path=""):
+def run_model_and_prediction_photo( path, output_path= "" ):
   # Load File
   image = tf_io.read_file(path)
   image = tf_io.decode_jpeg(image)
@@ -54,9 +56,30 @@ def run_model_and_prediction(path, output_path=""):
   # Open image
   show_image(output)
 
+def run_model_and_prediction_video( path, output_path= "" ):
+  # Load File
+  video = tf_io.read_file(path)
+  video = tf_io.decode_gif(video)
+
+  num_frames, height, width, _ = video.shape
+  crop_region = init_crop_region(height, width)
+
+  output = []
+  for i in range(num_frames):
+    keypoints = run_inference(
+      video[i, :, :, :],crop_region, crop_size=[input_size, input_size]
+    )
+    output.append(draw_prediction(video[i, :, :, :].numpy().astype(np.int32), keypoints, output_image_height=300))
+    crop_region = determine_crop_region(keypoints, height, width)
+
+  output = np.stack(output, axis=0)
+  save_video(output, output_path)
+
+
 if __name__ == "__main__":
   parser = argparse.ArgumentParser()
   parser.add_argument("image")
+  parser.add_argument("--video", "-v", action="store_true", required=False)
   parser.add_argument("--output", "-o", required=False)
   args = parser.parse_args()
   if args.image:
@@ -69,4 +92,7 @@ if __name__ == "__main__":
   else:
     output_path = input("Enter output file path: ")
   trace(output_path, DebugLevel.VERBOSE)
-  run_model_and_prediction(path, output_path)
+  if args.video:
+    run_model_and_prediction_video(path, output_path)
+  else:
+    run_model_and_prediction_photo(path, output_path)

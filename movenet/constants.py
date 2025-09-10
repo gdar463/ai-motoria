@@ -1,5 +1,6 @@
 # Threshold for accepting predictions
 keypoints_threshold = 0.11
+min_crop_keypoint_threshold = 0.2
 
 # For understanding which joint (not used ATM)
 KEYPOINT_DICT = {
@@ -21,6 +22,8 @@ KEYPOINT_DICT = {
     'left_ankle': 15,
     'right_ankle': 16
 }
+
+TORSO_JOINTS = ['left_shoulder', 'right_shoulder', 'left_hip', 'right_hip']
 
 # BGR map for OpenCV
 COLOR_MAP = {

@@ -7,6 +7,7 @@ import numpy as np
 from PIL import Image
 
 from constants import COLOR_MAP, KEYPOINT_EDGE_INDS_TO_COLOR, keypoints_threshold
+from debug import trace, DebugLevel
 
 
 # noinspection PyUnresolvedReferences,PyUnboundLocalVariable
@@ -32,17 +33,18 @@ def draw_prediction(image, keypoints, crop_region=None, output_image_height=None
       if score > keypoints_threshold:
         cv2.circle(image, (int(x), int(y)), 6, COLOR_MAP['red'], -1)
 
-  # Crop (if asked, for video)
-  if crop_region is not None:
-    xmin = int(max(crop_region['x_min'] * width, 0.0))
-    ymin = int(max(crop_region['y_min'] * height, 0.0))
-    xmax = int(min(crop_region['x_max'], 0.99) * width)
-    ymax = int(min(crop_region['y_max'], 0.99) * height)
-    cv2.rectangle(image, (xmin, ymin), (xmax, ymax), COLOR_MAP['b'], 1)
+  # # Crop (if asked, for video)
+  # if crop_region is not None:
+  #   xmin = int(max(crop_region['x_min'] * width, 0.0))
+  #   ymin = int(max(crop_region['y_min'] * height, 0.0))
+  #   xmax = int(min(crop_region['x_max'], 0.99) * width)
+  #   ymax = int(min(crop_region['y_max'], 0.99) * height)
+  #   cv2.rectangle(image, (xmin, ymin), (xmax, ymax), COLOR_MAP['b'], 1)
 
   # Resize (if asked)
   if output_image_height is not None:
-    output_image_width = int(output_image_height * width / height)
+    output_image_width = int(output_image_height * height / width)
+    trace("Resizing output image to %dx%d" % (output_image_width, output_image_height), DebugLevel.VERBOSE)
     image = cv2.resize(image, (output_image_width, output_image_height), interpolation=cv2.INTER_CUBIC)
 
   return image
